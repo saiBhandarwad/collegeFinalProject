@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<style>
+  body{
+    /* background-color:rgb(11, 166, 208); */
+    background-image: url(images/Q.avif);
+    background-size:cover;
+  }
+</style>
+</head>
+<body>
+     <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#" style="cursor:default;"><img src="images/weather.png" height="30px"> iClouder</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="https://weather-forecasting-by-saib.web.app/">Weather</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+              </li>
+
+              <li class="nav-item contact-us">
+                <a class="nav-link"data-bs-toggle="modal" data-bs-target="#SignUpModal" style="cursor: pointer;" >Contact</a>
+              </li>
+             
+              <li class="nav-item">
+                  <a class="nav-link" href="help.html">Help Center</a>
+                </li> 
+            </ul>
+
+            <!-- Search Bar -->
+            <form class="d-flex" role="search" name="searchBox">
+              <input  id="city" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query">
+              <button class="btn btn-outline-light" type="submit" id="iSubmit" >Search</button>
+            </form> 
+                     
+          </div>
+        </div>
+      </nav>
+      
+      <br>
+       <div class="container my-4"><main>
+        <h1 class="my-4 text-center" style="color:blue">Weather for <span id="cityName"></span></h1>
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+          <div class="col">
+            <div class="card mb-4 rounded-3 ">
+              <div class="card-header py-3">
+                <h4 class="my-0 fw-normal"  style="color: blue;">Temperatures</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title" id="bigtemp" style="display: inline"></h1><h1 style="display: inline">&deg;C</h1>
+                <ul class="list-unstyled mt-3 mb-4">
+
+                  <li>Temperature is <span id="temp"></span>&deg;c</li>
+                  <li>Min Temperature is <span id="min_temp"></span>&deg;c</li>
+                  <li>Max Temperature is <span id="max_temp"></span>&deg;c</li>
+                  <li>Feels Like : <span id="feels_like"></span>&deg;c</li>
+                </ul>
+               
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+              <div class="card-header py-3">
+                <h4 class="my-0 fw-normal"  style="color: blue;">Date & Time</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title" style="display: inline" id=""><h1 style="display: inline"><iconify-icon icon="bi:cloud-sun-fill" style="color: #327da8;"></iconify-icon></h1></h1>
+               
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li><span id="date"></span></li>
+                  
+                  <li><span id="tz"></span></li>
+                  <li>Sunrise Time is <span id="sunrise"></span></li>
+                  <li>Sunset Time is <span id="sunset"></span></li>
+                </ul>
+                
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+              <div class="card-header py-3">
+                <h4 class="my-0 fw-normal"  style="color: blue;">Humidity</h4>
+              </div>
+              <div class="card-body">
+                <h1 id="ihumidity"  style="display: inline;"></h1><h1 class="card-title pricing-card-title" style="display: inline;"><iconify-icon inline icon="wi:humidity" style="font-size: 50px;"></iconify-icon></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>Humidity is <span id="humidity"></span>%</li>
+                  <li>Wind_Speed is <span id="wind_speed"></span>km/hr</li>
+                  <li>Wind_Degree is <span id="wind_degrees"></span>&deg;c</li>
+                  <li>Cloud PCT is <span id="cloud_pct"></span></li>
+                 
+                 
+
+                </ul>
+                
+              </div>
+            </div>
+          </div>
+          </div>
+
+
+       
+        
+        <!-- Contact Page -->
+        <div class="modal fade" id="SignUpModal" tabindex="-1" aria-labelledby="SignUpModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="SignUpModalLabel">contact Page</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+              </div>
+              <div class="modal-body">
+                  <form class="row g-3" name="submit-to-google-sheet">
+                    <div class="col-md-6">
+                        <label for="inputPassword4" class="form-label">First Name</label>
+                        <input required type="text" class="form-control" id="inputPassword4" name="First_Name" onkeypress="return (event.charCode > 64 && 
+                        event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputPassword4" class="form-label">Last Name</label>
+                        <input required type="text" class="form-control" id="inputPassword4" name="Last_Name" onkeypress="return (event.charCode > 64 && 
+                        event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
+                    </div>
+                      <div class="col-md-12">
+                        <label for="inputEmail4" class="form-label">Email</label>
+                        <input required type="email" class="form-control" id="inputEmail4" name="Email">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="input-group" class="form-label">Phone Number</label>
+                        <input required type="tel" class="form-control" id="inputPassword4" name="PhoneNumber" pattern="[7-9]{1}[0-9]{9}">
+                      </div>
+                      <div class="col-12">
+                        <label for="inputAddress" class="form-label">Address</label>
+                        <input required type="text" class="form-control" id="inputAddress" name="Address">
+                      </div>
+                    
+                      <div class="col-md-6">
+                        <label for="inputCity" class="form-label" >City</label>
+                        <input required type="text" class="form-control" id="inputCity" name="City">
+                      </div>
+                     
+                      <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Message</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="Message"></textarea>
+                      </div>
+                      <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
+                    </form>
+              </div>
+      
+            </div>
+          </div>
+        </div>
+
+        
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+      <script src="script.js"></script>
+      <script src="https://code.iconify.design/iconify-icon/1.0.5/iconify-icon.min.js"></script>
+
+      <!-- contact page script -->
+      <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxMhxhc3blayUTwX1spT3Ve9VhYduTGeX9iTxZgf6xjhl9YyI_L9D74vyRNiMhW1u64/exec'
+        const form = document.forms['submit-to-google-sheet']
+
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+              alert('sent successfully !')
+              form.reset()
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+ 
+</body>
+
+</html>
